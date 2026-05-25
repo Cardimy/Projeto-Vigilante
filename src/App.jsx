@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dumbbell, Activity } from "lucide-react";
 
 export default function ProjetoVigilante() {
 
   const [checkedItems, setCheckedItems] = useState({});
+
+  useEffect(() => {
+  const savedItems = localStorage.getItem("projeto-vigilante");
+
+  if (savedItems) {
+    setCheckedItems(JSON.parse(savedItems));
+  }
+}, []);
+
+  useEffect(() => {
+  localStorage.setItem(
+    "projeto-vigilante",
+    JSON.stringify(checkedItems)
+  );
+}, [checkedItems]);
 
   const toggleExercise = (id) => {
   setCheckedItems((prev) => ({
@@ -256,6 +271,26 @@ export default function ProjetoVigilante() {
           {treino.exercises.map((ex, i) => {
             const exerciseId = `${treino.title}-${i}`;
 
+            const progress = getWorkoutProgress(
+              treino.title,
+              treino.exercises
+            );
+
+            const treinoCompleto =
+              progress.completed === progress.total;
+
+            const clearWorkout = (title, exercises) => {
+              setCheckedItems((prev) => {
+                const updated = { ...prev };
+
+                exercises.forEach((_, i) => {
+                  delete updated[`${title}-${i}`];
+                });
+
+                return updated;
+              });
+            };
+
             return (
               <label
                 key={exerciseId}
@@ -289,6 +324,44 @@ export default function ProjetoVigilante() {
         <p className="text-sm text-neutral-500 mt-5 italic">
           Foco: {treino.focus}
         </p>
+
+        <div className="flex gap-3 mt-5">
+          <button
+            disabled={!treinoCompleto}
+            onClick={() =>
+              alert(`Treino de ${treino.title} concluído! ⚔️`)
+            }
+            className={`
+              px-4 py-2 rounded-lg font-semibold transition-all
+              ${
+                treinoCompleto
+                  ? "bg-green-600 hover:bg-green-500 scale-100 animate-pulse"
+                  : "bg-neutral-700 text-neutral-400 cursor-not-allowed"
+              }
+            `}
+          >
+            ✅ Concluir treino
+          </button>
+
+          <button
+            onClick={() =>
+              clearWorkout(
+                treino.title,
+                treino.exercises
+              )
+            }
+            className="
+              px-4 py-2
+              rounded-lg
+              bg-red-600
+              hover:bg-red-500
+              font-semibold
+              transition-all
+            "
+          >
+            🗑 Limpar
+          </button>
+        </div>
 
       </div>
     </div>
