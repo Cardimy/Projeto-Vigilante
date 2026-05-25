@@ -167,7 +167,7 @@ export default function ProjetoVigilante() {
               focus: "Upper com foco em volume e ênfase em bíceps",
               exercises: [
                 "Supino com halteres — 1×12 + 4×8",
-                "Peck deck (crucifixo na máquina) — 4×10–12",
+                "Crucifixo máquina) — 4×10–12",
                 "Remada Cavalinho — 3×6",
                 "Puxada alta — 3×8",
                 "Elevação lateral — 4×12–15",
@@ -199,9 +199,9 @@ export default function ProjetoVigilante() {
                 "Flexão pliométrica — 3x10",
                 "Remada TRX — 3x10",
                 "Abdominal na máquina — 3x15",
-                "Elevação de pernas suspenso — 3x15",
+                "Elevação de pernas — 3x15",
                 "Prancha isométrica — 3x falha",
-                "Remo ergométrico — 250m sprint / descanso 45s, 6–8 rounds",
+                "Remo ergométrico — 250m, 6–8 rounds",
               ],
             },
 
@@ -261,9 +261,7 @@ export default function ProjetoVigilante() {
                 key={exerciseId}
                 className="
                   flex items-start gap-3
-                  rounded-lg
-                  px-3 py-2
-                  bg-neutral-800/20 hover:bg-neutral-800/50
+                  py-2
                   transition-all
                   cursor-pointer
                 "
@@ -272,9 +270,8 @@ export default function ProjetoVigilante() {
                   type="checkbox"
                   checked={checkedItems[exerciseId] || false}
                   onChange={() => toggleExercise(exerciseId)}
-                  className="h-5 w-5 accent-yellow-400"
+                  className="h-5 w-5 mt-1 flex-shrink-0 accent-yellow-400"
                 />
-
                 <span
                   className={`text-sm md:text-lg leading-relaxed transition-all ${
                     checkedItems[exerciseId]
