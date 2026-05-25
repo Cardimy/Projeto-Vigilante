@@ -128,14 +128,14 @@ export default function ProjetoVigilante() {
               focus: "Força e volume de upper, com ênfase em tríceps",
               exercises:
               [
-                "Remada Cavalinho (T-bar row) — 1×12 + 4×6",
-                "Remada baixa no cabo (triângulo ou pegada neutra) — 4x8",
-                "Supino inclinado com halteres — 3×6",
-                "Supino reto com barra — 3×8",
-                "Desenvolvimento com halteres — 4×8",
-                "Rosca scott com barra W (skull crusher) — 3×8–10",
-                "Rosca alternada com halteres — 3×8–10",
-                "Rosca inclinada com halteres — 3×8–10",
+                "Remada Cavalinho — 1×12 + 4×6",
+                "Remada baixa — 4x8",
+                "Supino inclinado — 3×6",
+                "Supino reto — 3×8",
+                "Desenvolvimento — 4×8",
+                "Rosca scott — 3×8–10",
+                "Rosca alternada — 3×8–10",
+                "Rosca inclinada — 3×8–10",
               ],
             },
 
@@ -147,7 +147,7 @@ export default function ProjetoVigilante() {
                 "Agachamento livre — 1×12 + 4×6",
                 "Leg press 45° — 4×10",
                 "Hack squat — 3×10–12",
-                "Agachamento búlgaro com halteres — 3×8",
+                "Agachamento búlgaro — 3×8",
                 "Extensora — 3×12",
                 "Panturrilha em pé — 4×15",
               ],
@@ -168,12 +168,12 @@ export default function ProjetoVigilante() {
               exercises: [
                 "Supino com halteres — 1×12 + 4×8",
                 "Peck deck (crucifixo na máquina) — 4×10–12",
-                "Remada Cavalinho (T-bar row) — 3×6",
-                "Puxada alta com pegada neutra ou triângulo — 3×8",
-                "Elevação lateral com halteres sentado — 4×12–15",
-                "Tríceps testa com barra (skull crusher) — 3×8–10",
-                "Tríceps francês com halter (overhead) — 3×8–10",
-                "Tríceps corda no cabo — 3×8–10",
+                "Remada Cavalinho — 3×6",
+                "Puxada alta — 3×8",
+                "Elevação lateral — 4×12–15",
+                "Tríceps testa — 3×8–10",
+                "Tríceps francês — 3×8–10",
+                "Tríceps corda — 3×8–10",
               ],
             },
 
@@ -181,12 +181,12 @@ export default function ProjetoVigilante() {
               title: "Sexta",
               focus: "Força e hipertrofia de posterior e glúteos",
               exercises: [
-                "Afundo no smith — 1×12 + 4×8",
-                "Stiff com halteres — 4×10",
+                "Afundo — 1×12 + 4×8",
+                "Stiff — 4×10",
                 "Flexora deitada — 4×10–12",
-                "Leg press com pés altos e afastados — 4×10",
+                "Leg press 45° — 4×10",
                 "Elevação pélvica — 4×10",
-                "Abdução no cabo ou máquina — 3x12–15",
+                "Abdutora— 3x12–15",
               ],
             },
 
@@ -260,10 +260,10 @@ export default function ProjetoVigilante() {
               <label
                 key={exerciseId}
                 className="
-                  flex items-center gap-3
+                  flex items-start gap-3
                   rounded-lg
                   px-3 py-2
-                  hover:bg-neutral-800/50
+                  bg-neutral-800/20 hover:bg-neutral-800/50
                   transition-all
                   cursor-pointer
                 "
@@ -276,7 +276,7 @@ export default function ProjetoVigilante() {
                 />
 
                 <span
-                  className={`text-lg transition-all ${
+                  className={`text-sm md:text-lg leading-relaxed transition-all ${
                     checkedItems[exerciseId]
                       ? "line-through text-neutral-500"
                       : "text-neutral-300"
