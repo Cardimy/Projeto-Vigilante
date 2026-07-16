@@ -12,6 +12,18 @@ export default function ProjetoVigilante() {
   }));
 };
 
+  const clearWorkout = (title, exercises) => {
+  setCheckedItems((prev) => {
+    const updated = { ...prev };
+
+    exercises.forEach((_, i) => {
+      delete updated[`${title}-${i}`];
+    });
+
+    return updated;
+  });
+};
+
   const getWorkoutProgress = (title, exercises) => {
   const completed = exercises.filter(
     (_, i) => checkedItems[`${title}-${i}`]
@@ -35,7 +47,7 @@ export default function ProjetoVigilante() {
           🦇<br></br>Projeto Vigilante
         </h1>
         <p className="text-neutral-400 mt-4 text-lg">
-          Se tornando uma pessoa melhor com a guarda de São Miguel Arcanjo
+          Cada série é uma decisão sobre quem você quer ser
         </p>
       </header>
 
@@ -63,15 +75,15 @@ export default function ProjetoVigilante() {
               </h2>
 
               <ul className="text-neutral-300 space-y-2 leading-relaxed">
-                <li><strong>Segunda:</strong> <p> </p> Treino de Upper + Tríceps</li>
+                <li><strong>Segunda:</strong> <p> </p> Treino de Upper + Bíceps</li>
                 <p> </p>
-                <li><strong>Terça:</strong> <p> </p> Treino de Lower (Quadríceps + Panturrilha)</li>
+                <li><strong>Terça:</strong> <p> </p> Treino de Lower</li>
                 <p> </p>
                 <li><strong>Quarta:</strong> <p> </p> Descanso ativo</li>
                 <p> </p>
-                <li><strong>Quinta:</strong> <p> </p> Treino de Upper + Bíceps</li>
+                <li><strong>Quinta:</strong> <p> </p> Treino de Upper + Tríceps</li>
                 <p> </p>
-                <li><strong>Sexta:</strong> <p> </p> Treino de Lower (Posterior + Glúteos)</li>
+                <li><strong>Sexta:</strong> <p> </p> Treino de Lower</li>
                 <p> </p>
                 <li><strong>Sábado:</strong> <p> </p> Treino de explosão</li>
                 <p> </p>
@@ -125,15 +137,14 @@ export default function ProjetoVigilante() {
 
             {
               title: "Segunda",
-              focus: "Força e volume de upper, com ênfase em tríceps",
+              focus: "Força e volume de upper, com ênfase em bíceps",
               exercises:
               [
-                "Remada Cavalinho — 1×12 + 4×6",
-                "Remada baixa — 4x8",
+                "Puxada alta — 1×12 + 4×6-8",
+                "Remada curvada — 4x6-8",
                 "Supino inclinado — 3×6",
                 "Supino reto — 3×8",
                 "Desenvolvimento — 4×8",
-                "Rosca scott — 3×8–10",
                 "Rosca alternada — 3×8–10",
                 "Rosca inclinada — 3×8–10",
               ],
@@ -144,11 +155,10 @@ export default function ProjetoVigilante() {
               focus: "Volume máximo em quadríceps e panturrilha",
               exercises:
               [
-                "Agachamento livre — 1×12 + 4×6",
-                "Leg press 45° — 4×10",
-                "Hack squat — 3×10–12",
-                "Agachamento búlgaro — 3×8",
-                "Extensora — 3×12",
+                "Agachamento livre — 1×12 + 4×8-10",
+                "Agachamento máquina - 3×6",
+                "Extensora — 3×10-12",
+                "Flexora — 3×10–12",
                 "Panturrilha em pé — 4×15",
               ],
             },
@@ -167,26 +177,24 @@ export default function ProjetoVigilante() {
               focus: "Upper com foco em volume e ênfase em bíceps",
               exercises: [
                 "Supino com halteres — 1×12 + 4×8",
-                "Crucifixo máquina) — 4×10–12",
-                "Remada Cavalinho — 3×6",
-                "Puxada alta — 3×8",
+                "Crucifixo máquina — 4×10–12",
+                "Remada unilateral — 3×10-12",
+                "Puxada alta neutra — 3×8",
                 "Elevação lateral — 4×12–15",
-                "Tríceps testa — 3×8–10",
-                "Tríceps francês — 3×8–10",
                 "Tríceps corda — 3×8–10",
+                "Tríceps francês — 3×8–10",
               ],
             },
 
             {
               title: "Sexta",
-              focus: "Força e hipertrofia de posterior e glúteos",
+              focus: "Força e hipertrofia de posterior",
               exercises: [
-                "Afundo — 1×12 + 4×8",
-                "Stiff — 4×10",
-                "Flexora deitada — 4×10–12",
+                "Agachamento livre — 1×12 + 4×8-10",
                 "Leg press 45° — 4×10",
-                "Elevação pélvica — 4×10",
-                "Abdutora— 3x12–15",
+                "Extensora — 3×10-12",
+                "Flexora — 3×10–12",
+                "Stiff — 4×10",
               ],
             },
 
@@ -220,6 +228,9 @@ export default function ProjetoVigilante() {
     treino.title,
     treino.exercises
   );
+
+  const treinoCompleto =
+  progress.completed === progress.total;
 
   return (
     <div key={index} className="bg-neutral-900/60 border border-neutral-800 rounded-xl shadow-lg backdrop-blur-sm hover:scale-[1.01] hover:border-yellow-500/40 transition-all duration-200">
@@ -255,6 +266,7 @@ export default function ProjetoVigilante() {
         <div className="space-y-3">
           {treino.exercises.map((ex, i) => {
             const exerciseId = `${treino.title}-${i}`;
+            
             return (
               <label
                 key={exerciseId}
@@ -288,6 +300,44 @@ export default function ProjetoVigilante() {
         <p className="text-sm text-neutral-500 mt-5 italic">
           Foco: {treino.focus}
         </p>
+
+        <div className="flex gap-3 mt-5">
+          <button
+            disabled={!treinoCompleto}
+            onClick={() =>
+              alert(`Treino de ${treino.title} concluído! ⚔️`)
+            }
+            className={`
+              px-4 py-2 rounded-lg font-semibold transition-all
+              ${
+                treinoCompleto
+                  ? "bg-green-600 hover:bg-green-500 scale-100 animate-pulse"
+                  : "bg-neutral-700 text-neutral-400 cursor-not-allowed"
+              }
+            `}
+          >
+            ✅ Concluir treino
+          </button>
+
+          <button
+            onClick={() =>
+              clearWorkout(
+                treino.title,
+                treino.exercises
+              )
+            }
+            className="
+              px-4 py-2
+              rounded-lg
+              bg-red-600
+              hover:bg-red-500
+              font-semibold
+              transition-all
+            "
+          >
+            🗑 Limpar
+          </button>
+        </div>
 
       </div>
     </div>
