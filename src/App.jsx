@@ -131,7 +131,7 @@ export default function ProjetoVigilante() {
       [
         "Agachamento no smith — 1×12 + 4×8-10",
         "Agachamento búlgaro - 3×6",
-        "Flexão de joelho — 3×10-12",
+        "Stiff com halteres — 3×10-12",
         "Panturrilha no Smith — 4×15",
         "Desenvolvimento — 4×8",
         "Elevação lateral — 4×8",
