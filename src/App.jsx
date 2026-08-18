@@ -177,14 +177,12 @@ export default function ProjetoVigilante() {
       title: "Sábado",
       focus: "Potência, explosão e condicionamento metabólico",
       exercises: [
-        "Levantamento terra — 1×12 + 3x6",
         "Agachamento com salto — 3x10",
         "Flexão pliométrica — 3x10",
         "Remada TRX — 3x10",
-        "Abdominal na máquina — 3x15",
+        "Abdominal na polia — 3x15",
         "Elevação de pernas — 3x15",
-        "Prancha isométrica — 3x falha",
-        "Remo ergométrico — 250m, 6–8 rounds",
+        "Pular corda — 120 segundos, 8 rounds",
       ],
     },
 
